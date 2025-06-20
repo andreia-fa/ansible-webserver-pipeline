@@ -1,0 +1,18 @@
+---
+- name: Provision Nginx Web Server
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Copy custom index.html
+      copy:
+        src: ../web/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
