@@ -1,0 +1,20 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y ansible
+      ansible-playbook ansible/playbook.yml -i ansible/inventory.ini
+    displayName: 'Run Ansible Playbook'
