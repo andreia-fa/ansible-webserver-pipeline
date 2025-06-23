@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python + Ansible
         run: |
           sudo apt update
-          sudo apt install -y ansible openssh-client
+          sudo apt install -y ansible
 
       - name: Setup SSH
         run: |
@@ -24,16 +24,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 20.208.133.12 >> ~/.ssh/known_hosts
-          echo "✅ SSH key file created:"
-          ls -l ~/.ssh
-          echo "🔐 Private key (first 2 lines):"
-          head -n 2 ~/.ssh/id_rsa
 
-      - name: Test SSH manually (non-blocking)
-        continue-on-error: true
-        run: |
-          ssh -o StrictHostKeyChecking=no azureuser@20.208.133.12 "echo '🔓 SSH connection SUCCESSFUL'"
-
-      - name: Deploy Playbook
+      - name: Run Ansible Playbook
         run: |
           ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
