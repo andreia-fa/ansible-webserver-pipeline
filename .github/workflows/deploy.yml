@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.ANSIBLE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 20.208.133.12 >> ~/.ssh/known_hosts
+
       - name: Install Ansible
         run: |
           sudo apt-get update
@@ -20,4 +27,4 @@ jobs:
 
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook ansible/playbook.yml -i ansible/inventory.ini
+          ansible-playbook -i ansible/inventory.ini ansible/playbook.yml
