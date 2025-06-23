@@ -18,15 +18,15 @@ This project demonstrates how to automatically provision and deploy a web server
 - Fully automated from `git push` → live update
 
 ## 📁 Project Structure
-.github/
-└── workflows/
-└── deploy.yml # CI/CD pipeline
-
-ansible/
-├── inventory.ini # Remote VM target definition
-└── playbook.yml # Web server provisioning script
-
-index.html # Custom content deployed
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # CI/CD pipeline
+│
+├── ansible/
+│   ├── inventory.ini           # Remote VM target definition
+│   └── playbook.yml            # Web server provisioning script
+│
+└── index.html                  # Custom web page deployed to Nginx
 
 
 ## 🧪 How It Works
