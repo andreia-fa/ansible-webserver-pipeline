@@ -18,6 +18,9 @@ This project demonstrates how to automatically provision and deploy a web server
 - Fully automated from `git push` → live update
 
 ## 📁 Project Structure
+
+```markdown
+📁 Project Structure
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml          # CI/CD pipeline
@@ -27,7 +30,7 @@ This project demonstrates how to automatically provision and deploy a web server
 │   └── playbook.yml            # Web server provisioning script
 │
 └── index.html                  # Custom web page deployed to Nginx
-
+```
 
 ## 🧪 How It Works
 
